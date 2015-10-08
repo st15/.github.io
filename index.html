@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+<section id="game" class="game-container">
+    <div id="win">
+        <p>You won!!!</p>
+        <p>Press Enter to go to next level.</p>
+    </div>
+    <div id="lose">
+        <p>You lost.</p>
+        <p>Press backspace to try again.</p>
+    </div>
+    <div id="level-name"></div>
+    <canvas class="game-canvas" id="draw" width="1" height="1"></canvas>
+</section>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/easing/EasePack.min.js"></script>
+<script type="text/javascript" src="js/levels-compiled.js"></script>
+<script type="text/javascript" src="js/game-compiled.js"></script>
+</body>
+</html>

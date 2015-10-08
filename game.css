@@ -1,0 +1,26 @@
+body {
+    margin: 20px;
+}
+
+.game-canvas {
+    border: 1px solid #000000;
+    background: #000000;
+    /*transition: width 1s ease, height 1s ease;*/
+    /*-webkit-transition: width 1s ease, height 1s ease;*/
+    /*-moz-transition: width 1s ease, height 1s ease;*/
+    /*-o-transition: width 1s ease, height 1s ease;*/
+}
+
+.game-container {
+    width: 725px;
+    margin: 0 auto;
+    background: azure;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
