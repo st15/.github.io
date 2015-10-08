@@ -375,6 +375,4 @@ var GameModule = (function () {
 
     return {init: init}
 })();
-
-
 window.onload = GameModule.init;
