@@ -1,5 +1,7 @@
 /**
  * Created by Lili on 1.10.2015 �..
+ *
+ * javascript test
  */
 "use strict";
 
@@ -33,7 +35,7 @@ var GameModule = (function () {
     var myGrid, myCursor;
 
     // welcome level json data
-    game.levelData = pathologicLevelData;
+    game.levelData = PATHOLOGIC_LEVEL_DATA;
     game.currentLevelIndex = 0;
     game.isLevelComplete = false;
 
@@ -418,8 +420,20 @@ var GameModule = (function () {
         });
     };
 
+    var swipeHandler = function swipeHandler(event) {
+        console.log(event);
+        document.getElementById('debug').innerHTML = event;
+    };
+
     var init = function init() {
         window.addEventListener("keydown", keyDownHandler);
+
+        var myElement = document.getElementById('game');
+
+        var hammertime = new Hammer(myElement, myOptions);
+        hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+        hammertime.on('swipe', swipeHandler);
+
         startNewGame();
     };
 

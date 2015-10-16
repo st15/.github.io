@@ -1,7 +1,10 @@
 /**
  * Created by Lili on 1.10.2015 ã..
+ *
+ * javascript test
  */
 "use strict";
+
 var DEBUG_MODE = true;
 var pathologicGame;
 var GameModule = (function () {
@@ -28,7 +31,7 @@ var GameModule = (function () {
     var myGrid, myCursor;
 
     // welcome level json data
-    game.levelData = pathologicLevelData;
+    game.levelData = PATHOLOGIC_LEVEL_DATA;
     game.currentLevelIndex = 0;
     game.isLevelComplete = false;
 
@@ -267,6 +270,8 @@ var GameModule = (function () {
         myCursor.draw(ctx);
     };
 
+
+
     var keyDownHandler = function (event) {
         var key = event.which || event.keyCode;
         switch (key) {
@@ -368,8 +373,21 @@ var GameModule = (function () {
         });
     };
 
+    var swipeHandler = function(event) {
+        console.log(event);
+        document.getElementById('debug').innerHTML = event;
+    }
+
     var init = function () {
         window.addEventListener("keydown", keyDownHandler);
+
+
+        var myElement = document.getElementById('game');
+
+        var hammertime = new Hammer(myElement, myOptions);
+        hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+        hammertime.on('swipe', swipeHandler);
+
         startNewGame();
     };
 
