@@ -376,6 +376,7 @@ var GameModule = (function () {
     var swipeHandler = function(event) {
         console.log(event);
         document.getElementById('debug').innerHTML = event.type;
+        ;
     }
 
     var init = function () {
