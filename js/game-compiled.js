@@ -461,7 +461,7 @@ var GameModule = (function () {
         //hammertime.on('swipe', swipeHandler);
         hammertime.on('swipeleft', swipeLeft).on('swiperight', swipeRight).on('swipeup', swipeUp).on('swipedown', swipeDown);
 
-        document.getElementById('next-level').onClick = function(){ onKey(NEXT_LEVEL); };
+        document.getElementById('next-level').onclick = function(){ onKey(NEXT_LEVEL); };
         startNewGame();
     };
 
