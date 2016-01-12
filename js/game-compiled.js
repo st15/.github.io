@@ -26,6 +26,11 @@ var GameModule = (function () {
     var COLOR_PATH = "#004488";
     // TODO alphas array
 
+    // key codes
+    var MOVE_LEFT = 37;
+    var MOVE_UP = 38;
+    var MOVE_RIGHT = 39;
+    var MOVE_DOWN = 40;
     // cell types
     var TYPE_BLOCK = 0;
     var TYPE_EMPTY = 1;
@@ -317,47 +322,7 @@ var GameModule = (function () {
 
     var keyDownHandler = function keyDownHandler(event) {
         var key = event.which || event.keyCode;
-        switch (key) {
-            case 13:
-                // Enter
-                if (game.isLevelComplete || DEBUG_MODE) {
-                    if (game.currentLevelIndex + 1 < game.levelData.length) {
-                        game.currentLevelIndex++;
-                    }
-                    startNewGame();
-                }
-                break;
-            case 8:
-                // backspace
-                restartGame();
-                break;
-            case 37:
-                // left key
-                myCursor.moveLeft();
-                checkForGameOver();
-                redraw();
-                break;
-            case 38:
-                // up
-                myCursor.moveUp();
-                checkForGameOver();
-                redraw();
-                break;
-            case 39:
-                // right key
-                myCursor.moveRight();
-                checkForGameOver();
-                redraw();
-                break;
-            case 40:
-                // down
-                myCursor.moveDown();
-                checkForGameOver();
-                redraw();
-                break;
-            default:
-                break;
-        }
+        onKey();
     };
 
     var checkForGameOver = function checkForGameOver() {
@@ -420,10 +385,70 @@ var GameModule = (function () {
         });
     };
 
+    function onKey(key) {
+        switch (key) {
+            case MOVE_LEFT:
+                // left key
+                myCursor.moveLeft();
+                checkForGameOver();
+                redraw();
+                break;
+            case MOVE_UP:
+                // up
+                myCursor.moveUp();
+                checkForGameOver();
+                redraw();
+                break;
+            case MOVE_RIGHT:
+                // right key
+                myCursor.moveRight();
+                checkForGameOver();
+                redraw();
+                break;
+            case MOVE_DOWN:
+                // down
+                myCursor.moveDown();
+                checkForGameOver();
+                redraw();
+                break;
+            case 13:
+                // Enter
+                if (game.isLevelComplete || DEBUG_MODE) {
+                    if (game.currentLevelIndex + 1 < game.levelData.length) {
+                        game.currentLevelIndex++;
+                    }
+                    startNewGame();
+                }
+                break;
+            case 8:
+                // backspace
+                restartGame();
+                break;
+            default:
+                break;
+        }
+    }
+
     var swipeHandler = function swipeHandler(event) {
         console.log(event);
         document.getElementById('debug').innerHTML = event.type;
     };
+
+    function swipeLeft(event) {
+        onKey(MOVE_LEFT);
+    }
+
+    function swipeRight(event) {
+        onKey(MOVE_RIGHT);
+    }
+
+    function swipeUp(event) {
+        onKey(MOVE_UP);
+    }
+
+    function swipeDown(event) {
+        onKey(MOVE_DOWN);
+    }
 
     var init = function init() {
         window.addEventListener("keydown", keyDownHandler);
@@ -432,7 +457,8 @@ var GameModule = (function () {
 
         var hammertime = new Hammer(myElement);
         hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
-        hammertime.on('swipe', swipeHandler);
+        //hammertime.on('swipe', swipeHandler);
+        hammertime.on('swipeleft', swipeLeft).on('swiperight', swipeRight).on('swipeup', swipeUp).on('swipedown', swipeDown);
 
         startNewGame();
     };
