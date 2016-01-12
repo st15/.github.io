@@ -32,6 +32,7 @@ var GameModule = (function () {
     var MOVE_RIGHT = 39;
     var MOVE_DOWN = 40;
     var NEXT_LEVEL = 13; // enter
+    var SAME_LEVEL = 8; // backspace
     // cell types
     var TYPE_BLOCK = 0;
     var TYPE_EMPTY = 1;
@@ -421,7 +422,7 @@ var GameModule = (function () {
                     startNewGame();
                 }
                 break;
-            case 8:
+            case SAME_LEVEL:
                 // backspace
                 restartGame();
                 break;
@@ -456,6 +457,7 @@ var GameModule = (function () {
     var init = function init() {
         window.addEventListener("keydown", keyDownHandler);
         document.getElementById("next-level").onclick=gotoNextLevel;
+        document.getElementById("same-level").onclick=restartGame;
     
         var myElement = document.getElementById('game');
 
