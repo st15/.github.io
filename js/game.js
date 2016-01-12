@@ -401,10 +401,12 @@ var GameModule = (function () {
         onKey(MOVE_DOWN);
     }
 
-    var init = function () {
+function gotoNextLevel(){ onKey(NEXT_LEVEL); };
+
+    var init = function init() {
         window.addEventListener("keydown", keyDownHandler);
-
-
+        document.getElementById("next-level").onclick=gotoNextLevel;
+        document.getElementById("same-level").onclick=restartGame;
         var myElement = document.getElementById('game');
 
         var hammertime = new Hammer(myElement);
