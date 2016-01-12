@@ -31,6 +31,7 @@ var GameModule = (function () {
     var MOVE_UP = 38;
     var MOVE_RIGHT = 39;
     var MOVE_DOWN = 40;
+    var NEXT_LEVEL = 13; // enter
     // cell types
     var TYPE_BLOCK = 0;
     var TYPE_EMPTY = 1;
@@ -320,11 +321,6 @@ var GameModule = (function () {
         myCursor.draw(ctx);
     };
 
-    var keyDownHandler = function keyDownHandler(event) {
-        var key = event.which || event.keyCode;
-        onKey();
-    };
-
     var checkForGameOver = function checkForGameOver() {
         var winDiv = document.getElementById('win');
         var loseDiv = document.getElementById('lose');
@@ -385,6 +381,11 @@ var GameModule = (function () {
         });
     };
 
+    var keyDownHandler = function keyDownHandler(event) {
+        
+        onKey(event.which || event.keyCode);
+    };
+
     function onKey(key) {
         switch (key) {
             case MOVE_LEFT:
@@ -411,7 +412,7 @@ var GameModule = (function () {
                 checkForGameOver();
                 redraw();
                 break;
-            case 13:
+            case NEXT_LEVEL:
                 // Enter
                 if (game.isLevelComplete || DEBUG_MODE) {
                     if (game.currentLevelIndex + 1 < game.levelData.length) {
@@ -459,7 +460,7 @@ var GameModule = (function () {
         hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
         //hammertime.on('swipe', swipeHandler);
         hammertime.on('swipeleft', swipeLeft).on('swiperight', swipeRight).on('swipeup', swipeUp).on('swipedown', swipeDown);
-
+ $('#next-level').click(function(){ onKey(NEXT_LEVEL); });
         startNewGame();
     };
 
