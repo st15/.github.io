@@ -460,7 +460,8 @@ var GameModule = (function () {
         hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
         //hammertime.on('swipe', swipeHandler);
         hammertime.on('swipeleft', swipeLeft).on('swiperight', swipeRight).on('swipeup', swipeUp).on('swipedown', swipeDown);
- $('#next-level').click(function(){ onKey(NEXT_LEVEL); });
+
+        document.getElementById('next-level').onClick = function(){ onKey(NEXT_LEVEL); };
         startNewGame();
     };
 
