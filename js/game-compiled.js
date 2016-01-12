@@ -455,7 +455,8 @@ var GameModule = (function () {
 
     var init = function init() {
         window.addEventListener("keydown", keyDownHandler);
-
+        document.getElementById("next-level").onclick=gotoNextLevel;
+    
         var myElement = document.getElementById('game');
 
         var hammertime = new Hammer(myElement);
