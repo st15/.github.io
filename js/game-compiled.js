@@ -450,6 +450,8 @@ var GameModule = (function () {
     function swipeDown(event) {
         onKey(MOVE_DOWN);
     }
+    
+    function gotoNextLevel(){ onKey(NEXT_LEVEL); };
 
     var init = function init() {
         window.addEventListener("keydown", keyDownHandler);
@@ -461,7 +463,6 @@ var GameModule = (function () {
         //hammertime.on('swipe', swipeHandler);
         hammertime.on('swipeleft', swipeLeft).on('swiperight', swipeRight).on('swipeup', swipeUp).on('swipedown', swipeDown);
 
-        document.getElementById('next-level').onclick = function(){ onKey(NEXT_LEVEL); };
         startNewGame();
     };
 
