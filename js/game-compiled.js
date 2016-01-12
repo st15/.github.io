@@ -430,8 +430,7 @@ var GameModule = (function () {
 
         var myElement = document.getElementById('game');
 
-        var myOptions = {};
-        var hammertime = new Hammer(myElement, myOptions);
+        var hammertime = new Hammer(myElement);
         hammertime.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
         hammertime.on('swipe', swipeHandler);
 
