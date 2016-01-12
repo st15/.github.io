@@ -1,5 +1,5 @@
 /**
- * Created by Lili on 1.10.2015 ã..
+ * Created by Lili on 1.10.2015 Ã£..
  *
  * javascript test
  */
@@ -27,6 +27,7 @@ var GameModule = (function () {
     const MOVE_UP = 38;
     const MOVE_RIGHT = 39;
     const MOVE_DOWN = 40;
+    const NEXT_LEVEL = 13; // enter
     // cell types
     const TYPE_BLOCK = 0;
     const TYPE_EMPTY = 1;
@@ -211,11 +212,11 @@ var GameModule = (function () {
             for (var i = 0; i < dimensions.x; i++) {
                 this.cells[i] = new Array(dimensions.y);
                 for (var j = 0; j < dimensions.y; j++) {
-                    this.cells[i][j] = new Cell(i, j, TYPE_EMPTY); // ñúçäàâàì ïðàçíè êëåòêè
+                    this.cells[i][j] = new Cell(i, j, TYPE_EMPTY); // Ã±ÃºÃ§Ã¤Ã Ã¢Ã Ã¬ Ã¯Ã°Ã Ã§Ã­Ã¨ ÃªÃ«Ã¥Ã²ÃªÃ¨
                 }
             }
             for (var modCell of modifiedCells) {
-                this.cells[modCell["x"]][modCell["y"]].type = modCell["type"]; // ìîäèôèöèðàì òèïà
+                this.cells[modCell["x"]][modCell["y"]].type = modCell["type"]; // Ã¬Ã®Ã¤Ã¨Ã´Ã¨Ã¶Ã¨Ã°Ã Ã¬ Ã²Ã¨Ã¯Ã 
             }
         }
 
@@ -273,13 +274,6 @@ var GameModule = (function () {
 
         myGrid.draw(ctx);
         myCursor.draw(ctx);
-    };
-
-
-
-    var keyDownHandler = function (event) {
-        var key = event.which || event.keyCode;
-        onKey();
     };
 
     var checkForGameOver = function () {
@@ -344,6 +338,10 @@ var GameModule = (function () {
         });
     };
 
+    var keyDownHandler = function (event) {
+        onKey(event.which || event.keyCode);
+    };
+    
     function onKey(key) {
         switch (key) {
             case MOVE_LEFT:  // left key
@@ -366,7 +364,7 @@ var GameModule = (function () {
                 checkForGameOver();
                 redraw();
                 break;
-            case 13: // Enter
+            case NEXT_LEVEL: // Enter
                 if (game.isLevelComplete || DEBUG_MODE) {
                     if (game.currentLevelIndex + 1 < game.levelData.length) {
                         game.currentLevelIndex++;
@@ -417,6 +415,7 @@ var GameModule = (function () {
             .on('swipeup', swipeUp)
             .on('swipedown', swipeDown);
 
+        $('#next-level').click(function(){ onKey(NEXT_LEVEL); });
         startNewGame();
     };
 
