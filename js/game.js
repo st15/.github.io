@@ -17,7 +17,7 @@ var GameModule = (function () {
     const CIRCLE_RADIUS = 12;
     const COLORS = ["#ffffff", "#334455", "#334455", "#004488", "#ffffff", "#ffffff"];
     //const COLORS = ["#cccccc", "#554433", "#334455", "#004488"];
-    const COLOR_CURSOR = "#ffffff";
+    const COLOR_CURSOR = "#ff4c4c";
     const COLOR_GRID = "#ffffff";
     const COLOR_PATH = "#004488";
     // TODO alphas array
