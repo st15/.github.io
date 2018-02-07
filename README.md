@@ -1,3 +1,3 @@
 # st15.github.io
 
-JavaScript test
+A puzzle game built using ECMAScript 6 and compiled to JavaScript.
